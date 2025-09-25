@@ -5,16 +5,46 @@
     "api/index.php": { "runtime": "vercel-php@0.7.4" }
     },
     "routes": [
-        { "src": "/build/(.*)", "dest": "/public/build/" },
+        { 
+            "src": "/css/(.*)", 
+            "dest": "/public/css/$1",
+            "headers": { "Cache-Control": "public, max-age=31536000" }
+        },
+        { 
+            "src": "/js/(.*)", 
+            "dest": "/public/js/$1",
+            "headers": { "Cache-Control": "public, max-age=31536000" }
+        },
+        { 
+            "src": "/img/(.*)", 
+            "dest": "/public/img/$1",
+            "headers": { "Cache-Control": "public, max-age=31536000" }
+        },
+        { 
+            "src": "/vendor/(.*)", 
+            "dest": "/public/vendor/$1",
+            "headers": { "Cache-Control": "public, max-age=31536000" }
+        },
+        { 
+            "src": "/build/(.*)", 
+            "dest": "/public/build/$1",
+            "headers": { "Cache-Control": "public, max-age=31536000" }
+        },
+        { 
+            "src": "/(.*\\.(css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot))$", 
+            "dest": "/public/$1",
+            "headers": { "Cache-Control": "public, max-age=31536000" }
+        },
+        { "src": "/test-assets\\.php", "dest": "/public/test-assets.php" },
         { "src": "/(.*)", "dest": "/api/index.php" }
     ],
     "public": true,
-    "buildCommand": "vite build",
-    "outputDirectory": "public",
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "false",
-        "APP_URL": "https://yourproductionurl.com",
+        "APP_URL": "https://lara-ver.vercel.app",
+        "ASSET_URL": "https://lara-ver.vercel.app",
+        "MIX_ASSET_URL": "https://lara-ver.vercel.app",
         "APP_KEY": "base64:TGaVaXwhWgjn9akhE4SCSIjGG/cQqvICUQ+PgLA3Bs0=",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
